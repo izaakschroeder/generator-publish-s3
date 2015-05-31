@@ -1,0 +1,29 @@
+#
+# The .gitignore file excludes files from version control. Obviously some files
+# don't belong in version control and this is partly how to specify that. Note
+# that system-wide ignorable files (like the Mac OS X .DS_Store file) do NOT
+# belong in this file, but rather belong in your global .gitignore file.
+#
+# See:
+# * https://git-scm.com/docs/gitignore
+# * https://github.com/github/gitignore
+# * https://stackoverflow.com/questions/7335420/global-git-ignore
+#
+
+# Local configuration variables which could include potentially sensitive
+# information like AWS keys.
+.env
+
+# Generated files (e.g. via webpack).
+build
+
+# All the code for the modules you use and probably shouldn't be version
+# controlled since npm can manage it just fine. For a lovely discussion, see:
+# https://npmjs.org/doc/faq.html
+node_modules
+
+# Coverage reports from istanbul.
+coverage
+
+# Log output (e.g. "npm-debug.log").
+*.log
