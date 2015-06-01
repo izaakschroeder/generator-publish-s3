@@ -28,6 +28,6 @@ module.exports = generators.Base.extend({
 		}
 	},
 	end: function() {
-		open(this.file);
+		
 	}
 });
