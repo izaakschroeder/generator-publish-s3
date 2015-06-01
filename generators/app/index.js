@@ -3,7 +3,7 @@ var AWS = require('aws-sdk');
 var generators = require('yeoman-generator');
 var Promise = require('bluebird');
 var _ = require('lodash');
-
+var open = require('open');
 var util = require('../../lib/util');
 var policies = require('../../lib/policies');
 
@@ -28,12 +28,15 @@ module.exports = generators.Base.extend({
     var name = this.name;
     var done = this.async();
     var _this = this;
+    var placeholder = this.fs.read(this.templatePath('coming-soon.html'));
 
     var s3 = util.promised(this.s3, [
       'headBucket',
       'createBucket',
       'putBucketWebsite',
-      'putBucketPolicy'
+      'putBucketPolicy',
+      'headObject',
+      'putObject'
     ]);
 
 
@@ -69,9 +72,22 @@ module.exports = generators.Base.extend({
         Bucket: name,
         Statement: policies.public({ bucket: name })
       });
+    }).then(function() {
+      return s3.headObject({
+        Bucket: name,
+        Key: 'index.html'
+      }).catch(util.error({ code: 'NotFound' }), function(err) {
+        _this.log('Adding placeholder page.');
+        return s3.putObject({
+          Bucket: name,
+          Key: 'index.html',
+          ContentType: 'text/html',
+          Body: placeholder
+        })
+      });
     }).nodeify(done);
 	},
 	end: function() {
-
+    open('http://' + this.name + '.s3-website-us-west-2.amazonaws.com');
 	}
 });

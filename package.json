@@ -7,6 +7,7 @@
 		"yeoman-generator": "^0.20.1",
 		"aws-sdk": "^2.1.32",
 		"lodash": "*",
-		"bluebird": "*"
+		"bluebird": "*",
+		"open": "*"
 	}
 }
