@@ -2,12 +2,14 @@
 	"name": "generator-publish-s3",
 	"version": "0.1.0",
 	"description": "",
+	"repository": "izaakschroeder/generator-publish-s3",
 	"keywords": [ "yeoman-generator" ],
 	"dependencies": {
 		"yeoman-generator": "^0.20.1",
 		"aws-sdk": "^2.1.32",
-		"lodash": "*",
-		"bluebird": "*",
-		"open": "*"
+		"lodash": "^3.9.3",
+		"bluebird": "^2.9.27",
+		"open": "^0.0.5",
+		"tldjs": "^1.5.2"
 	}
 }
